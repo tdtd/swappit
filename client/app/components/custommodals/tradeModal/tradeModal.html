@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4> Are you sure you want to request {{ tradeModal.book.title }}?</h4>
+</div>
+
+<div class="modal-body">
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="modal-main-image">
+        <img src="./../assets/images/placeholder.jpg" ng-src="{{ tradeModal.book.thumbnail }}">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <textarea class="modal-textarea" ng-model="tradeModal.message" placeholder="Leave a message for {{ tradeModal.book.owner.name}}!"> </textarea>
+    </div>
+  </div>
+  
+</div>
+
+<div class="modal-footer">
+  <button ng-class="button.classes" ng-click="tradeModal.cancel()" class="btn btn-danger pull-left">Cancel</button>
+  <button ng-class="button.classes" ng-click="tradeModal.ok()" class="btn btn-success pull-right">OK</button>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-container">
+    <div class="card-box">
+      <div class="flex-card" ng-repeat="book in browseCtrl.books">
+        <div class="book-card-info">
+          <div class="book-thumbnail">
+            <img src="./../assets/images/placeholder.jpg" ng-src="{{book.thumbnail}}" draggable="false"/>
+          </div>
+          <div class="book-info">
+            <div class="book-text">
+              <p>{{book.title}}</p>
+            </div>
+            <div class="button-row">
+              <div class="row">
+                <span class="col-xs-6">
+                  <a ng-href="{{book.infoLink}}"><span class="btn btn-default"><i class="fa fa-info" aria-hidden="true"></i></span></a>
+                </span>
+                <span class="col-xs-6">
+                  <span class="btn btn-default" ng-click="browseCtrl.requestTrade(book)"><i class="fa fa-retweet" aria-hidden="true"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

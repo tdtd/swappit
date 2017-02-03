@@ -1,0 +1,30 @@
+.divider{
+  min-height: 25px;
+  width: 100%;
+  font-size: 22px;
+  background: #5bc0de;
+  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: white;
+  &:hover{
+    background: #4abfcd;
+  }
+}
+
+.card-container{
+  min-width: 300px;
+}
+
+.card-expand{
+    overflow: hidden;
+    height: 0;
+    padding: 0;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s;
+}

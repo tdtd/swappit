@@ -1,0 +1,39 @@
+.expand-panel{
+    overflow: hidden;
+    height: 0;
+    padding: 0;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s;
+}
+.panel-heading{
+  cursor: pointer;
+}
+
+.request-panel{
+  line-height: 30px;
+  .request-button{
+    text-align:right; 
+  }
+}
+
+.panel-content{
+  padding: 15px;
+  text-align: center;
+  .panel-message{
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .panel-buttons{
+    position: relative;
+    display: inline-block;
+    width: 75%;
+    @media (min-width: 256px) {
+      button{
+        min-width: 75px;
+      }
+    }
+  }
+}

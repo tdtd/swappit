@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="messages">
+    <div uib-alert ng-repeat="alert in meCtrl.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="meCtrl.removeAlert($index)">{{alert.msg}}</div>
+  </div>
+  
+  <form ng-submit="meCtrl.searchBook(meCtrl.searchTitle)" class="form-group">
+    <div class="input-group">
+      <input class="form-control" ng-model="meCtrl.searchTitle" type="text"/>
+      <span class="input-group-btn">
+        <button type="submit" class="btn">
+          <span ng-show="!meCtrl.activeSearch">
+            Search
+          </span>
+          <span ng-show="meCtrl.activeSearch">
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="-10px" y="0"
+                   width="30px" height="15px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <rect x="-5" y="4" width="12" height="100" fill="#333">
+                  <animate attributeName="opacity" attributeType="XML"
+                           values="1; .2; 1" 
+                           begin="0s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+                <rect x="10" y="4" width="12" height="100" fill="#333">
+                  <animate attributeName="opacity" attributeType="XML"
+                           values="1; .2; 1" 
+                           begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+                <rect x="25" y="4" width="12" height="100" fill="#333">
+                  <animate attributeName="opacity" attributeType="XML"
+                           values="1; .2; 1" 
+                           begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+                </rect>
+            </svg>
+          </span>
+        </button>
+      </span>
+    </div>
+  </form>
+  <!-- ng-show="meCtrl.isState('searching')" -->
+  <div class="slider card-expand" id="searching-panel">
+    <div><h1>Searching</h1></div>  
+    <div class="card-container">
+      <div class="card-box">
+        <div class="flex-card" ng-repeat="book in meCtrl.searchedBooks">
+          <div class="book-card-info">
+            <div class="book-thumbnail">
+              <img src="./../assets/images/placeholder.jpg" ng-src="{{book.thumbnail}}" draggable="false"/>
+              <span class="rating">
+                <span ng-repeat="star in meCtrl.rating(book.averageRating) track by $index">
+                  <span ng-show="star == 'full'"><i class="fa fa-star gold" aria-hidden="true"></i></span>
+                  <span ng-show="star == 'half'"><i class="fa fa-star-half-o gold" aria-hidden="true"></i></span>
+                  <span ng-show="star == 'empty'"><i class="fa fa-star-o grey" aria-hidden="true"></i></span>
+                </span>
+              </span>
+            </div>
+            <div class="book-info">
+              <div class="book-text">
+                <p>{{book.title}}</p>
+              </div>
+              <div class="button-row">
+                <div class="row">
+                  <span class="col-xs-6">
+                    <a ng-href="{{book.infoLink}}"><span class="btn btn-default"><i class="fa fa-info" aria-hidden="true"></i></span></a>
+                  </span>
+                  <span class="col-xs-6">
+                    <span class="btn btn-default" ng-click="meCtrl.claimBook(book)"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div>
+      <span class="pull-left">
+        <button class="btn btn-default" ng-disabled="meCtrl.canLess()" ng-click="meCtrl.changePage(-1)"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+      </span>
+      <span class="pull-right">
+        <button class="btn btn-default pull-right" ng-disabled="meCtrl.canMore()" ng-click="meCtrl.changePage(1)"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </span>
+    </div>
+  
+  </div>
+</div>
+
+<div class="divider" ng-show="meCtrl.searchedBooks.length > 0">
+  <div class="noselect searching" ng-click="meCtrl.setState('library')" ng-show="meCtrl.isState('searching')">
+    <span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="noselect library" ng-click="meCtrl.setState('searching')" ng-show="meCtrl.isState('library')">
+    <span>
+      <i class="fa fa-angle-down" aria-hidden="true"></i>
+      <i class="fa fa-angle-down" aria-hidden="true"></i>
+      <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </span>
+  </div>
+</div>
+<!--  ng-show="meCtrl.isState('library')" -->
+<div class="container">
+  <div class="card-expand" id="library-panel">
+    <div>
+      <h1>Library</h1>
+    </div>
+    <div class="card-container">
+      <div class="card-box">
+        <div class="flex-card" ng-repeat="book in meCtrl.libraryBooks track by $index">
+          <div class="book-card-info">
+            <div class="book-thumbnail">
+              <img src="./../assets/images/placeholder.jpg" ng-src="{{book.thumbnail}}" draggable="false"/>
+            </div>
+            <div class="book-info">
+              <div class="book-text">
+                <p>{{book.title}}</p>
+              </div>
+              <div class="button-row">
+                <div class="row">
+                  <span class="col-xs-6">
+                    <a ng-href="{{book.infoLink}}"><span class="btn btn-default"><i class="fa fa-info" aria-hidden="true"></i></span></a>
+                  </span>
+                  <span class="col-xs-6">
+                    <span class="btn btn-default" ng-click="meCtrl.removeBook(book._id, $index)"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

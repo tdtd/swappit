@@ -1,0 +1,30 @@
+
+.jumbotron{
+  margin-top: -20px;
+  text-align: center;
+  background: #312c32;
+  background-image: url("../assets/images/background.png");
+  h2{
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.56);
+  }
+  .jumbo-image{
+    height: 250px;
+    width: 100%;
+    position: relative;
+    .bookSwap{
+      height: 100%;
+      width: auto;
+      background-image: url("../assets/images/bookswaplogo.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-origin: padding-box;
+      background-position: center;
+    }
+  }
+}
+
+.carousel{
+  height: 300px;
+  border: 1px solid red;
+}

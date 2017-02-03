@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="title">
+      <h1>Requests Receied</h1>
+    </div>
+    <div class="panel panel-default" ng-repeat="trade in tradeCtrl.receivedTrades | orderBy: trade.date track by $index">
+      <div class="panel-heading" ng-click="tradeCtrl.toggleActive($index, 'receivedTrades')">
+        <strong>{{ trade.sender.name }}</strong> would like to borrow <strong>{{ trade.book.title }}</strong>
+      </div>
+      <div class="panel-body expand-panel" ng-attr-id="{{'receivedTrades'+$index}}">
+        <div class="panel-content">
+          <div class="panel-message" ng-show="trade.message">
+            <p>{{trade.message}}</p>
+          </div>
+          <div class="panel-buttons">
+            <button class="btn btn-danger pull-left" ng-click="tradeCtrl.rejectTrade(trade)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="btn btn-success pull-right" ng-click="tradeCtrl.acceptTrade(trade)"><i class="fa fa-check" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+   <div class="row">
+    <h1>Requests Sent</h1>
+    <div class="panel panel-default" ng-repeat="trade in tradeCtrl.sentTrades | orderBy: trade.date track by $index">
+      <div class="panel-heading">
+        <div class="row request-panel">
+          <span class="col-xs-10">
+            <strong>You </strong> would like to borrow <strong>{{ trade.book.title }}</strong> from <strong> {{ trade.receiver.name }}. </strong>
+          </span>
+          <span class="col-xs-2 request-button">
+              <button class="btn btn-sm btn-danger" ng-click="tradeCtrl.removeTrade(trade)"><i class="fa fa-times" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>

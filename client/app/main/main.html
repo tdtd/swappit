@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="jumbo-image">
+      <div class="bookSwap"></div>
+    </div>
+    <h2>Swap books with the world!</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="text-center">
+    <h1>Recently Added</h1>
+  </div>
+  <hr>
+  <div class="card-container">
+      <div class="card-box">
+        <div class="flex-card" ng-repeat="book in mCtrl.books">
+          <div class="book-card-info">
+            <div class="book-thumbnail">
+              <img src="./../assets/images/placeholder.jpg" ng-src="{{book.thumbnail}}" draggable="false"/>
+            </div>
+            <div class="book-info">
+              <div class="book-text">
+                <p>{{book.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
